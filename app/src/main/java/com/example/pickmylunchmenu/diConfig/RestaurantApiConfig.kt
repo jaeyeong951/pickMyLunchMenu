@@ -22,6 +22,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -42,8 +43,8 @@ object RestaurantApiConfig {
     @Singleton
     @Provides
     fun provideNewsApiRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl("https://541e8f5dce60.ngrok.io").client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+        return Retrofit.Builder().baseUrl("https://b1503903daf8.ngrok.io").client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(
                 RxJava2CallAdapterFactory.create()).build()
     }

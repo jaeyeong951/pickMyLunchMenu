@@ -34,10 +34,4 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="editTextTheme" parent="Widget.MaterialComponents.TextInputLayout." >
-        <!-- underline color in FilledBox style -->
-        <item name="boxStrokeColor">#00ffffff</item>
-        ....
-    </style>
-
 </resources>
