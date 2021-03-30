@@ -11,5 +11,5 @@ interface RestaurantService {
         @Query("current_x") currentX : Double,
         @Query("current_y") currentY : Double,
         @Query("boundary") boundary : Double
-    ) : Single<ArrayList<NearByRestaurantItem>>
+    ) : Single<List<NearByRestaurantItem>>
 }

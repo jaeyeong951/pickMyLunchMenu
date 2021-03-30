@@ -2,12 +2,15 @@ package com.example.pickmylunchmenu.dto
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import com.toy.plzPickMyLunchMenu.domain.dto.Review
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
 @Keep
 @Parcelize
+//@JsonClass(generateAdapter = true)
 data class NearByRestaurantItem(
     val doro: String?,
     val id: Int,

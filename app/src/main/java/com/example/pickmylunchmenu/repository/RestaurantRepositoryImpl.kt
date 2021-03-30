@@ -10,7 +10,7 @@ class RestaurantRepositoryImpl @Inject constructor(private val restaurantService
         current_x: Double,
         current_y: Double,
         boundary: Double
-    ): Single<ArrayList<NearByRestaurantItem>> {
+    ): Single<List<NearByRestaurantItem>> {
        return restaurantService.getRestaurant(current_x, current_y, boundary)
     }
 }

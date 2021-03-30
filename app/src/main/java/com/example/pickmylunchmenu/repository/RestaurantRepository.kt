@@ -6,5 +6,5 @@ import io.reactivex.Single
 interface RestaurantRepository {
     fun getRestaurantNearByMe(current_x : Double,
                               current_y : Double,
-                              boundary : Double) : Single<ArrayList<NearByRestaurantItem>>
+                              boundary : Double) : Single<List<NearByRestaurantItem>>
 }

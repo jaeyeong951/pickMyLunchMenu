@@ -44,11 +44,12 @@ class MainViewModel @Inject constructor(private val restaurantRepository: Restau
     fun getRestaurantNearByMe(currentX : Double,
                               currentY : Double,
                               boundary : Double) {
-        apiCall<ArrayList<NearByRestaurantItem>>(restaurantRepository.getRestaurantNearByMe(currentX, currentY, boundary),
+        apiCall(restaurantRepository.getRestaurantNearByMe(currentX, currentY, boundary),
         onSuccess = {
             restaurantList.clear()
             totalReview = 0
-            val cont = it
+            Log.e("list size", it.size.toString())
+            val cont = ArrayList(it)
             cont.sortByDescending { nearByRestaurant ->
                 nearByRestaurant.rating * (nearByRestaurant.user_ratings_total / 100)
             }

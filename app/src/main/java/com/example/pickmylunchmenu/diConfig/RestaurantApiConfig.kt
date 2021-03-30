@@ -9,13 +9,12 @@ import com.example.pickmylunchmenu.repository.HistoryRepositoryImpl
 import com.example.pickmylunchmenu.repository.RestaurantRepository
 import com.example.pickmylunchmenu.repository.RestaurantRepositoryImpl
 import com.example.pickmylunchmenu.service.RestaurantService
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -44,9 +43,10 @@ object RestaurantApiConfig {
     @Provides
     fun provideNewsApiRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().baseUrl("https://b1503903daf8.ngrok.io").client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .addCallAdapterFactory(
-                RxJava2CallAdapterFactory.create()).build()
+//            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(KotlinJsonAdapterFactory()).build()))
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
     }
 
     @Singleton
