@@ -31,7 +31,6 @@
         app:layout_constraintTop_toBottomOf="@+id/submit_review_title" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:theme="@style/editTextTheme"
         android:id="@+id/submit_review_comment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
