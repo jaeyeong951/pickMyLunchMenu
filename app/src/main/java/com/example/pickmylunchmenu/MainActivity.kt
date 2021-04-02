@@ -3,13 +3,17 @@ package com.example.pickmylunchmenu
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    val viewModel by viewModels<MainActivityViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,8 +25,6 @@ class MainActivity : AppCompatActivity() {
             statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
             decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 
-            // SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN 사용 시 windowSoftInputMode = adjustResize가 작동하지 않음
-            // 아래처럼 해결
             decorView.viewTreeObserver.addOnGlobalLayoutListener {
                 val r = Rect()
                 window.decorView.getWindowVisibleDisplayFrame(r)
@@ -40,5 +42,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.testValue.observe(this, {
+            Log.e("in main activity", it.toString())
+        })
     }
 }

@@ -15,9 +15,11 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.example.pickmylunchmenu.MainActivityViewModel
 import com.example.pickmylunchmenu.R
 import com.example.pickmylunchmenu.base.BaseFragment
 import com.example.pickmylunchmenu.databinding.DialogSubmitReviewBinding
@@ -83,15 +85,15 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
                                 naverMap.locationOverlay.position = LatLng(it.latitude, it.longitude)
                                 CircleOverlay().apply {
                                     center = LatLng(it.latitude, it.longitude)
-                                    radius = 250.0
+                                    radius = 350.0
                                     map = naverMap
                                     outlineColor = Color.parseColor("#884B47FF")
                                     outlineWidth = 7
                                     color = Color.parseColor("#00000000")
                                 }
-                                naverMap.moveCamera(CameraUpdate.toCameraPosition(CameraPosition(LatLng(it.latitude, it.longitude), 16.0)))
+                                naverMap.moveCamera(CameraUpdate.toCameraPosition(CameraPosition(LatLng(it.latitude, it.longitude), 15.0)))
                                 if(!viewModel.isLoaded) {
-                                    viewModel.getRestaurantNearByMe(it.latitude, it.longitude, 0.25)
+                                    viewModel.getRestaurantNearByMe(it.latitude, it.longitude, 0.35)
 //                                    viewModel.getRestaurantNearByMe(35.154324, 129.057481, 0.09)
                                     viewModel.isLoaded = true
                                 }

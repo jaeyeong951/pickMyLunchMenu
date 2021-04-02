@@ -13,7 +13,7 @@ import kotlinx.parcelize.RawValue
 //@JsonClass(generateAdapter = true)
 data class NearByRestaurantItem(
     val doro: String?,
-    val id: Int,
+    val id: Long,
     val jibun: String,
     val lat: String,
     val lng: String,
@@ -22,5 +22,8 @@ data class NearByRestaurantItem(
     val tel: String?,
     val reviews: @RawValue List<Review>,
     val rating: Double,
-    val user_ratings_total: Int
+    val user_ratings_total: Int,
+    val category: String,
+    val distance: Double = 0.0,
+    val menus: @RawValue List<MenuDto>
 ) : Parcelable

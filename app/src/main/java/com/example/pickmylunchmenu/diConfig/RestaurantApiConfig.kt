@@ -4,11 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.example.pickmylunchmenu.dao.HistoryDao
 import com.example.pickmylunchmenu.db.HistoryDataBase
-import com.example.pickmylunchmenu.repository.HistoryRepository
-import com.example.pickmylunchmenu.repository.HistoryRepositoryImpl
-import com.example.pickmylunchmenu.repository.RestaurantRepository
-import com.example.pickmylunchmenu.repository.RestaurantRepositoryImpl
+import com.example.pickmylunchmenu.repository.*
 import com.example.pickmylunchmenu.service.RestaurantService
+import com.example.pickmylunchmenu.service.UserService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -28,6 +26,16 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RestaurantApiConfig {
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(userService: UserService) : UserRepository
+        = UserRepositoryImpl(userService)
+
+    @Singleton
+    @Provides
+    fun provideUserService(retrofit: Retrofit) : UserService
+        = retrofit.create(UserService::class.java)
 
     @Singleton
     @Provides

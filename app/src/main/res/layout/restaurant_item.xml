@@ -104,5 +104,26 @@
         android:textSize="12sp"
         android:textColor="@color/s_textWhiteHint"
         />
+    <ImageView
+        android:id="@+id/restaurant_location_ic"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_location_remain"
+        app:layout_constraintStart_toEndOf="@+id/restaurant_review_telephone_num"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_review_star"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurant_review_star"
+        android:layout_marginStart="20dp" />
+    <TextView
+        android:id="@+id/restaurant_location_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="100m"
+        app:layout_constraintStart_toEndOf="@+id/restaurant_location_ic"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_review_star"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurant_review_star"
+        android:layout_marginStart="8dp"
+        android:textSize="12sp"
+        android:textColor="@color/s_textWhiteHint"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
