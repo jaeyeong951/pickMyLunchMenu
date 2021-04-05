@@ -4,7 +4,7 @@ data class OrderDetailDto(
     val id: Long,
     val menuName: String,
     val price: Int,
-    val count: Int,
+    var count: Int,
     val menu_id: Long
 ) {
 }

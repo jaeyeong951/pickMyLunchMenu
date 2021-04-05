@@ -50,4 +50,11 @@ class RestaurantRepositoryImpl @Inject constructor(private val restaurantService
     override fun deleteFavorite(id: Long): Single<ApiResponse.RESPONSE> {
         return restaurantService.deleteFavorite(id)
     }
+
+    override fun updateOrders(
+        orderDetails: List<OrderDetailDto>,
+        order_id: Long
+    ): Single<ApiResponse.RESPONSE> {
+        return restaurantService.updateOrders(orderDetails, order_id)
+    }
 }

@@ -69,7 +69,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment(){
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.e("onDestroyView","onDestroyView")
+        Log.e("onDestroyView",this.tag.toString())
         _binding = null
     }
 

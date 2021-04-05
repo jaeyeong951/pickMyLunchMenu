@@ -4,9 +4,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.pickmylunchmenu.MainActivityViewModel
+import com.example.pickmylunchmenu.R
 import com.example.pickmylunchmenu.base.BaseFragment
 import com.example.pickmylunchmenu.databinding.FragmentBasketBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +35,11 @@ class BasketFragment : BaseFragment<FragmentBasketBinding, BasketViewModel>() {
 
         viewModel.isGetOrdersFinished.observe(viewLifecycleOwner, {
             var price = 0
-            _binding!!.basketList.adapter = BasketAdapter(viewModel).apply {
+            _binding!!.basketList.adapter = BasketAdapter(viewModel = viewModel, listener = {_ , position ->
+                Log.e("onCLicked",viewModel.orderDtoList.reversed()[position].restaurant.name )
+                val bundle = bundleOf("basket" to viewModel.orderDtoList.reversed()[position])
+                findNavController().navigate(R.id.action_basketFragment_to_basketEditFragment, bundle)
+            }).apply {
                 basketList = viewModel.orderDtoList.reversed()
                 Log.e("장바구니 불러오기", "성공")
             }

@@ -103,5 +103,21 @@
     <fragment
         android:id="@+id/basketFragment"
         android:name="com.example.pickmylunchmenu.ui.basket.BasketFragment"
-        android:label="BasketFragment" />
+        android:label="BasketFragment" >
+        <action
+            android:id="@+id/action_basketFragment_to_basketEditFragment"
+            app:destination="@id/basketEditFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/basketEditFragment"
+        android:name="com.example.pickmylunchmenu.ui.basket.edit.BasketEditFragment"
+        android:label="BasketEditFragment" >
+        <argument
+            android:name="basket"
+            app:argType="com.example.pickmylunchmenu.dto.OrderDto" />
+    </fragment>
 </navigation>

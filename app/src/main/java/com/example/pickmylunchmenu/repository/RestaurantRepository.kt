@@ -39,4 +39,9 @@ interface RestaurantRepository {
     fun deleteFavorite(
         id: Long
     ) : Single<ApiResponse.RESPONSE>
+
+    fun updateOrders(
+        orderDetails: List<OrderDetailDto>,
+        order_id: Long
+    ) : Single<ApiResponse.RESPONSE>
 }

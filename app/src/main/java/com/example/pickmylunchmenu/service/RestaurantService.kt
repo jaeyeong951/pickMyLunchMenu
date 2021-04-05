@@ -56,4 +56,10 @@ interface RestaurantService {
     fun deleteFavorite(
         @Query("id") id: Long
     ) : Single<ApiResponse.RESPONSE>
+
+    @POST("/update_menus")
+    fun updateOrders(
+        @Body menus: List<OrderDetailDto>,
+        @Query("order_id") order_id: Long
+    ) : Single<ApiResponse.RESPONSE>
 }

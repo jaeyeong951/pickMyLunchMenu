@@ -1,13 +1,14 @@
 package com.example.pickmylunchmenu.ui.basket
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pickmylunchmenu.databinding.BasketItemBinding
 import com.example.pickmylunchmenu.dto.OrderDetailDto
 import com.example.pickmylunchmenu.dto.OrderDto
 
-class BasketAdapter(val viewModel: BasketViewModel) : RecyclerView.Adapter<BasketAdapter.BasketListViewHolder>() {
+class BasketAdapter(private val listener: (View, Int) -> Unit, private val viewModel: BasketViewModel) : RecyclerView.Adapter<BasketAdapter.BasketListViewHolder>() {
     var basketList = emptyList<OrderDto>()
         set(value) {
             field = value
@@ -42,6 +43,7 @@ class BasketAdapter(val viewModel: BasketViewModel) : RecyclerView.Adapter<Baske
                 binding.basketItemDeleteButton.setOnClickListener {
                     viewModel.deleteOrder(id)
                 }
+                binding.root.setOnClickListener { listener(binding.root, position) }
             }
         }
     }
