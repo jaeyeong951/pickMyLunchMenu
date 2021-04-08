@@ -12,6 +12,7 @@ import com.example.pickmylunchmenu.MainActivityViewModel
 import com.example.pickmylunchmenu.R
 import com.example.pickmylunchmenu.base.BaseFragment
 import com.example.pickmylunchmenu.databinding.FragmentMainTwoBinding
+import com.example.pickmylunchmenu.dto.NearByRestaurantItem
 import com.example.pickmylunchmenu.ui.MainViewModel
 import com.example.pickmylunchmenu.ui.RestaurantListAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,8 @@ class MainTwoFragment : BaseFragment<FragmentMainTwoBinding, MainTwoViewModel>()
     override val viewModel: MainTwoViewModel by viewModels()
 
     val activityViewModel: MainActivityViewModel by activityViewModels()
+
+    var restaurantListForSort: List<NearByRestaurantItem> = mutableListOf()
 
     var height = 0
 
@@ -34,43 +37,46 @@ class MainTwoFragment : BaseFragment<FragmentMainTwoBinding, MainTwoViewModel>()
         val params = _binding!!.mainTwoToolbar.layoutParams as ConstraintLayout.LayoutParams
         params.topMargin = height + 48
 
+        restaurantListForSort = activityViewModel.cachedRestaurantList
+
         _binding!!.mainTwoRecyclerView.adapter = RestaurantListAdapter { v, p ->
-            val bundle = bundleOf("position" to p)
+            val bundle = bundleOf("restaurant" to restaurantListForSort[p])
             findNavController().navigate(R.id.action_mainTwoFragment_to_restaurantFragment, bundle)
         }.apply {
-            restaurantList = activityViewModel.cachedRestaurantList
+            restaurantList = restaurantListForSort
             _binding!!.mainTwoChipGroup.setOnCheckedChangeListener { group, checkedId ->
                 _binding!!.mainTwoRecyclerView.animate()
                 when(checkedId) {
                     R.id.chip_favorite -> {
                         viewModel.getFavorites(activityViewModel.cachedUser!!.uid)
                         viewModel.isGetFavoritesFinished.observe(viewLifecycleOwner, {
-                            val list = viewModel.favorites.map {
+                            restaurantListForSort = viewModel.favorites.map {
                                 it.restaurantDto
                             }
-                            restaurantList = list
+                            restaurantList = restaurantListForSort
                         })
                     }
                     R.id.chip_distance -> {
-                        val list = activityViewModel.cachedRestaurantList.sortedBy {
+                        restaurantListForSort = activityViewModel.cachedRestaurantList.sortedBy {
                             it.distance
                         }
-                        restaurantList = list
+                        restaurantList = restaurantListForSort
                     }
                     R.id.chip_abc -> {
-                        val list = activityViewModel.cachedRestaurantList.sortedBy {
+                        restaurantListForSort = activityViewModel.cachedRestaurantList.sortedBy {
                             it.name
                         }
-                        restaurantList = list
+                        restaurantList = restaurantListForSort
                     }
                     R.id.chip_review -> {
-                        val list = activityViewModel.cachedRestaurantList.sortedByDescending {
+                        restaurantListForSort = activityViewModel.cachedRestaurantList.sortedByDescending {
                             it.user_ratings_total
                         }
-                        restaurantList = list
+                        restaurantList = restaurantListForSort
                     }
                     else -> {
-                        restaurantList = activityViewModel.cachedRestaurantList
+                        restaurantListForSort = activityViewModel.cachedRestaurantList
+                        restaurantList = restaurantListForSort
                     }
                 }
             }

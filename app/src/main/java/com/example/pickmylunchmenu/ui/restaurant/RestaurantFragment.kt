@@ -40,7 +40,7 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding, RestaurantVie
     }
 
     override fun initView() {
-        restaurant = activityViewModel.cachedRestaurantList[args.position]
+        restaurant = args.restaurant
         height = resources.getDimensionPixelSize(resources.getIdentifier("status_bar_height", "dimen", "android"))
         val params = _binding!!.restaurantToolbar.layoutParams as ConstraintLayout.LayoutParams
         params.topMargin = height + 48

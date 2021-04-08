@@ -57,4 +57,26 @@ class RestaurantRepositoryImpl @Inject constructor(private val restaurantService
     ): Single<ApiResponse.RESPONSE> {
         return restaurantService.updateOrders(orderDetails, order_id)
     }
+
+    override fun payment(
+        orderID: List<Long>,
+        method: String?
+    ): Single<ResultDTO<PaymentDto>> {
+        return restaurantService.payment(orderID, method)
+    }
+
+    override fun getDelayedPayments(userID: Long): Single<List<PaymentDto>> {
+        return restaurantService.getDelayedPayments(userID)
+    }
+
+    override fun proceedDelayedPayment(
+        paymentID: Long,
+        method: String
+    ): Single<ResultDTO<PaymentDto>> {
+        return restaurantService.proceedDelayedPayment(paymentID, method)
+    }
+
+    override fun cancelDelayedPayment(paymentID: Long): Single<ResultDTO<PaymentDto>> {
+        return restaurantService.cancelDelayedPayment(paymentID)
+    }
 }

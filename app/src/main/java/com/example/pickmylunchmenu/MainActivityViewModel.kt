@@ -2,9 +2,7 @@ package com.example.pickmylunchmenu
 
 import androidx.lifecycle.LiveData
 import com.example.pickmylunchmenu.base.BaseViewModel
-import com.example.pickmylunchmenu.dto.NearByRestaurantItem
-import com.example.pickmylunchmenu.dto.OrderMenuDto
-import com.example.pickmylunchmenu.dto.UserDto
+import com.example.pickmylunchmenu.dto.*
 import com.example.pickmylunchmenu.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -21,7 +19,14 @@ class MainActivityViewModel @Inject constructor(): BaseViewModel() {
 
     var cachedRestaurantList: List<NearByRestaurantItem> = ArrayList()
 
-    var orderMenuList: MutableList<OrderMenuDto> = ArrayList()
+    var orderMenuList = ArrayList<OrderMenuDto>()
+
+    var orderDtoList = ArrayList<OrderDto>()
+
+    var delayedPayments: List<PaymentDto> = ArrayList()
+    var remainingDays = 0
+
+    var priceForPurchase = 0
 
     fun setTestValue(v: Int) {
         _testValue.postValue(v)
@@ -29,5 +34,10 @@ class MainActivityViewModel @Inject constructor(): BaseViewModel() {
 
     fun setTotalPrice(v: Int) {
         _totalPrice.postValue(v)
+    }
+
+    fun clearOrder() {
+        orderDtoList.clear()
+        orderMenuList.clear()
     }
 }

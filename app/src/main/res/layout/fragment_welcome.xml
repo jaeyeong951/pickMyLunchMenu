@@ -147,7 +147,7 @@
         app:layout_constraintTop_toBottomOf="@+id/welcome_korean"
         app:layout_constraintStart_toStartOf="@+id/welcome_korean"
         app:layout_constraintEnd_toEndOf="@+id/welcome_korean"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_delayed_payments_button"
         android:orientation="vertical"
         android:background="@drawable/review_bg"
         android:foreground="@drawable/select_effect"
@@ -215,4 +215,21 @@
             app:layout_constraintTop_toBottomOf="@+id/welcome_japanese_image"
             app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/welcome_delayed_payments_button"
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/mov_red"
+        android:text="미결제 내역이 있어요!"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_japanese"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

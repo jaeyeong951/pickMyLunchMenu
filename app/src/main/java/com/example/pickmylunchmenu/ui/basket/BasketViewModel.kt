@@ -17,7 +17,7 @@ class BasketViewModel @Inject constructor(private val restaurantRepository: Rest
     private val _isGetOrdersFailed: SingleLiveEvent<Any> = SingleLiveEvent()
     val isGetOrdersFailed: LiveData<Any> get() = _isGetOrdersFailed
 
-    var orderDtoList: List<OrderDto> = ArrayList()
+    var orderDtoList = ArrayList<OrderDto>()
 
     var user_id by Delegates.notNull<Long>()
 
@@ -27,7 +27,7 @@ class BasketViewModel @Inject constructor(private val restaurantRepository: Rest
             if(it == null) _isGetOrdersFailed.call()
             else {
                 user_id = id
-                orderDtoList = it
+                orderDtoList = ArrayList(it)
                 _isGetOrdersFinished.call()
             }
         },

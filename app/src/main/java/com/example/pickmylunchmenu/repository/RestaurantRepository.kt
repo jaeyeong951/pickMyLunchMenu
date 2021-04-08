@@ -44,4 +44,22 @@ interface RestaurantRepository {
         orderDetails: List<OrderDetailDto>,
         order_id: Long
     ) : Single<ApiResponse.RESPONSE>
+
+    fun payment(
+        orderID: List<Long>,
+        method: String?
+    ) : Single<ResultDTO<PaymentDto>>
+
+    fun getDelayedPayments(
+        userID: Long
+    ) : Single<List<PaymentDto>>
+
+    fun proceedDelayedPayment(
+        paymentID: Long,
+        method: String
+    ) : Single<ResultDTO<PaymentDto>>
+
+    fun cancelDelayedPayment(
+        paymentID: Long
+    ) : Single<ResultDTO<PaymentDto>>
 }

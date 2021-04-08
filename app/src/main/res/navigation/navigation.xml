@@ -63,6 +63,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/mainTwoFragment"
@@ -88,8 +95,8 @@
         android:name="com.example.pickmylunchmenu.ui.restaurant.RestaurantFragment"
         android:label="RestaurantFragment">
         <argument
-            android:name="position"
-            app:argType="integer"
+            android:name="restaurant"
+            app:argType="com.example.pickmylunchmenu.dto.NearByRestaurantItem"
             />
         <action
             android:id="@+id/action_restaurantFragment_to_basketFragment"
@@ -111,6 +118,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_basketFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/basketEditFragment"
@@ -119,5 +133,30 @@
         <argument
             android:name="basket"
             app:argType="com.example.pickmylunchmenu.dto.OrderDto" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.pickmylunchmenu.ui.payment.PaymentFragment"
+        android:label="PaymentFragment" >
+        <action
+            android:id="@+id/action_paymentFragment_pop_including_basketFragment"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_paymentFragment_to_paymentResultFragment"
+            app:destination="@id/paymentResultFragment"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentResultFragment"
+        android:name="com.example.pickmylunchmenu.ui.payment.result.PaymentResultFragment"
+        android:label="PaymentResultFragment" >
+        <argument
+            android:name="fromBasket"
+            app:argType="boolean" />
+        <argument
+            android:name="paymentResult"
+            app:argType="com.example.pickmylunchmenu.dto.PaymentDto" />
     </fragment>
 </navigation>

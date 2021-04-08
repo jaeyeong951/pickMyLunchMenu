@@ -9,7 +9,7 @@ import com.example.pickmylunchmenu.dto.OrderDetailDto
 import com.example.pickmylunchmenu.dto.OrderDto
 
 class BasketAdapter(private val listener: (View, Int) -> Unit, private val viewModel: BasketViewModel) : RecyclerView.Adapter<BasketAdapter.BasketListViewHolder>() {
-    var basketList = emptyList<OrderDto>()
+    var basketList = arrayListOf<OrderDto>()
         set(value) {
             field = value
             notifyDataSetChanged()

@@ -55,6 +55,9 @@ class BasketEditFragment : BaseFragment<FragmentBasketEditBinding, BasketEditVie
             }
             viewModel.totalPrice.observe(viewLifecycleOwner, { price ->
                 ("변경하기(${price}원)").also { basketEditRestaurantEditButton.text = it }
+                basketEditRestaurantMyOrderResultList.adapter = BasketBottomListAdapter(viewModel).apply {
+                    detailList = viewModel.selectedBasket!!.orderDetailList
+                }
             })
         }
         viewModel.isUpdateFinished.observe(viewLifecycleOwner, {
@@ -63,5 +66,6 @@ class BasketEditFragment : BaseFragment<FragmentBasketEditBinding, BasketEditVie
         viewModel.isUpdateFailed.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), "메뉴 변경에 실패했습니다.", Toast.LENGTH_SHORT).show()
         })
+
     }
 }

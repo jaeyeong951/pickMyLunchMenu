@@ -62,4 +62,26 @@ interface RestaurantService {
         @Body menus: List<OrderDetailDto>,
         @Query("order_id") order_id: Long
     ) : Single<ApiResponse.RESPONSE>
+
+    @PUT("/payment")
+    fun payment(
+        @Query("order_id") orderID: List<Long>,
+        @Query("method") method: String?
+    ) : Single<ResultDTO<PaymentDto>>
+
+    @GET("/get_delayed_payments")
+    fun getDelayedPayments(
+        @Query("user_id") userID: Long
+    ) : Single<List<PaymentDto>>
+
+    @POST("/proceed-delayed-payment")
+    fun proceedDelayedPayment(
+        @Query("payment_id") paymentID: Long,
+        @Query("method") method: String
+    ) : Single<ResultDTO<PaymentDto>>
+
+    @POST("/cancel-delayed_payment")
+    fun cancelDelayedPayment(
+        @Query("payment_id") paymentID: Long
+    ) : Single<ResultDTO<PaymentDto>>
 }

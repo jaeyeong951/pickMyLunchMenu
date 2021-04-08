@@ -68,8 +68,8 @@ class BasketEditMenuListAdapter(private val basketEditViewModel: BasketEditViewM
                 }
                 basketEditViewModel.selectedBasket!!.orderDetailList.forEach {
                     if(it.menu_id == id) {
-                        binding.itemMenuCheckbox.isChecked = true
                         binding.itemMenuControllerQuantity.text = it.count.toString()
+                        binding.itemMenuCheckbox.isChecked = true
                     }
                 }
                 binding.itemMenuControllerPlusButton.setOnClickListener {
